@@ -54,7 +54,7 @@ try:
     #     print(list)
 
     log_obj.info("Water Isolation Creator - Adding Group IDs".format())
-    utility.add_field_if_needed(mains_dissolve, "Group_ID", "SHORT")
+    utility.add_field_if_needed(mains_dissolve, "Group_ID", "LONG")
     counter = 1
     # assumes main_ID values from smooshed list are unique - I think they should be
     for list in smooshed_lists:
@@ -97,7 +97,8 @@ try:
     # possible final step - small buffer the result and select the ORIGINAL mains, tag those with an
     # isolation area id
 
-    output_fc = os.path.join(config.working_gdb, "mains_with_group_ID")
+    # MAKE OUTPUT FC CALLED "mains_with_group_ID" ONCE ALL SAID AND DONE - WRITE TO OTHER DB?
+    output_fc = os.path.join(config.working_gdb, "mains_with_group_ID_full")
     log_obj.info("Water Isolation Creator - Saving output to {}".format(output_fc))
     arcpy.CopyFeatures_management(mains_groupID_dissolve, output_fc)
 
